@@ -71,27 +71,41 @@
             gap: 25px;
         }
 
+        /* リンクの装飾を消す */
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         .card {
             border: 1px solid #ddd;
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: white;
+            height: 100%;
         }
 
         .card:hover {
             transform: translateY(-5px);
+            border-color: var(--accent-green);
         }
 
         .card-img {
             width: 100%;
             height: 180px;
-            background-color: var(--accent-green); /* 画像がない場合の仮色 */
+            background-color: var(--accent-green); 
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         .card-content {
@@ -154,26 +168,30 @@
             <h2>Works</h2>
             <div class="portfolio-grid">
                 
-                <div class="card">
-                    <div class="card-img">HandiMap Kanto</div>
-                    <div class="card-content">
-                        <span class="tag">Web Service</span>
-                        <h3 class="card-title">HandiMap Kanto</h3>
-                        <p>障害者手帳を活用できる施設をまとめた、お出かけ支援マップサイト。</p>
+                <a href="https://jonekun429.github.io/my-simulation/" class="card-link" target="_blank">
+                    <div class="card">
+                        <div class="card-img">Simulation System</div>
+                        <div class="card-content">
+                            <span class="tag">Web Tool</span>
+                            <h3 class="card-title">シミュレーション</h3>
+                            <p>独自ロジックを用いたシミュレーションツール。動作確認はこちらから可能です。</p>
+                        </div>
                     </div>
-                </div>
+                </a>
+
+                <a href="https://jonekun429.github.io/shogaisha-techo/" class="card-link" target="_blank">
+                    <div class="card">
+                        <div class="card-img">HandiMap Kanto</div>
+                        <div class="card-content">
+                            <span class="tag">Web Service</span>
+                            <h3 class="card-title">HandiMap Kanto</h3>
+                            <p>障害者手帳を活用できる施設をまとめた、お出かけ支援マップサイト。</p>
+                        </div>
+                    </div>
+                </a>
 
                 <div class="card">
-                    <div class="card-img">Project 02</div>
-                    <div class="card-content">
-                        <span class="tag">HTML / CSS</span>
-                        <h3 class="card-title">プロジェクト名</h3>
-                        <p>作品の説明をここに記載します。こだわりポイントや使用した技術など。</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">Project 03</div>
+                    <div class="card-img">Design Work</div>
                     <div class="card-content">
                         <span class="tag">Design</span>
                         <h3 class="card-title">ウェブクリックアイコン制作</h3>
