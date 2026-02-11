@@ -4,222 +4,662 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio | 制作実績集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 基本のカラー設定 */
         :root {
-            --primary-green: #005D4D; /* 指定された深い青緑に変更 */
-            --light-green: #e9f5db;   /* 背景用の薄い緑 */
-            --accent-green: #718355;  /* 落ち着いたセージグリーン */
-            --text-color: #333;
-            --bg-white: #ffffff;
+            --primary: #005D4D;
+            --primary-dark: #004539;
+            --primary-light: #007A66;
+            --accent: #E8A838;
+            --accent-light: #FFF3DC;
+            --surface: #F7FAF8;
+            --surface-card: #FFFFFF;
+            --text: #2C3E3A;
+            --text-light: #5F7A73;
+            --text-muted: #8FA8A0;
+            --border: #D4E2DD;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow-sm: 0 2px 8px rgba(0,93,77,0.06);
+            --shadow-md: 0 8px 30px rgba(0,93,77,0.10);
+            --shadow-lg: 0 16px 50px rgba(0,93,77,0.14);
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
 
         body {
-            font-family: 'Helvetica Neue', Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            background-color: var(--bg-white);
+            font-family: 'Noto Sans JP', 'Sora', sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--surface);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ヘッダー */
-        header {
-            background-color: var(--primary-green);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
         }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-        }
-
-        /* メインコンテンツ */
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 20px;
-        }
-
-        section {
-            margin-bottom: 4rem;
-        }
-
-        h2 {
-            border-left: 5px solid var(--primary-green);
-            padding-left: 15px;
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
-        }
-
-        /* 自己紹介セクション */
-        .profile {
+        nav .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 20px;
-            background-color: var(--light-green);
-            padding: 20px;
-            border-radius: 10px;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 64px;
         }
-
-        /* ポートフォリオのグリッドレイアウト */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+        nav .logo {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            letter-spacing: 1px;
         }
-
-        /* リンクの装飾を消す */
-        .card-link {
+        nav .nav-links { display: flex; gap: 8px; }
+        nav .nav-links a {
             text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .card {
-            border: 1px solid #ddd;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 8px 16px;
             border-radius: 8px;
+            transition: var(--transition);
+        }
+        nav .nav-links a:hover, nav .nav-links a:focus {
+            color: var(--primary);
+            background: rgba(0,93,77,0.06);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
-            transition: transform 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(170deg, var(--primary) 0%, var(--primary-dark) 55%, #003D32 100%);
+            color: white;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(232,168,56,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: fadeInDown 0.8s ease both;
+        }
+        .hero h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            animation: fadeInDown 0.8s 0.15s ease both;
+        }
+        .hero p {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            opacity: 0.85;
+            line-height: 1.9;
+            font-weight: 300;
+            animation: fadeInDown 0.8s 0.3s ease both;
+        }
+        .hero-scroll {
+            margin-top: 48px;
+            animation: fadeInDown 0.8s 0.45s ease both;
+        }
+        .hero-scroll a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .hero-scroll a:hover { color: white; }
+        .hero-scroll .arrow {
+            display: inline-block;
+            animation: bounce 2s infinite;
+            font-size: 1.2rem;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .section-label::before {
+            content: '';
+            width: 24px; height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+        .section-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            max-width: 550px;
+            margin-bottom: 48px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-card {
             background: white;
-            height: 100%;
-            display: flex;       /* 追加：高さを揃えるためのFlex設定 */
-            flex-direction: column; 
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 32px;
+            align-items: center;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-green);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 180px;
-            background-color: var(--accent-green); 
+        .about-icon {
+            flex-shrink: 0;
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-align: center;
-            padding: 10px;
-            box-sizing: border-box;
+            font-size: 2rem;
         }
-
-        .card-content {
-            padding: 15px;
-            flex-grow: 1; /* 追加：内容量に関わらず下部を揃える */
+        .about-text h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
         }
-
-        .card-title {
-            font-size: 1.25rem;
-            margin-top: 0;
-            color: var(--primary-green);
+        .about-text p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.9;
         }
-
-        .tag {
-            display: inline-block;
-            background: var(--light-green);
-            color: var(--primary-green);
-            padding: 2px 8px;
-            border-radius: 4px;
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .skill-tag {
+            background: var(--surface);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 4px 14px;
+            border-radius: 50px;
             font-size: 0.8rem;
-            margin-bottom: 10px;
+            font-weight: 500;
         }
 
+        /* ===== WORKS GRID ===== */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .work-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            outline-offset: 4px;
+            border-radius: var(--radius);
+        }
+        .work-link:focus-visible {
+            outline: 3px solid var(--accent);
+        }
+        .work-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+        .work-thumb {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .work-thumb .thumb-icon {
+            font-size: 2.8rem;
+            z-index: 1;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+            transition: var(--transition);
+        }
+        .work-card:hover .thumb-icon {
+            transform: scale(1.1);
+        }
+        .work-thumb .thumb-label {
+            position: absolute;
+            bottom: 12px; right: 14px;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(6px);
+            padding: 4px 12px;
+            border-radius: 6px;
+            color: white;
+        }
+        .work-body {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .work-tag {
+            display: inline-block;
+            background: var(--accent-light);
+            color: #B07C1E;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            width: fit-content;
+            margin-bottom: 12px;
+        }
+        .work-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        .work-desc {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+        .work-footer {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        .work-card:hover .work-footer { color: var(--primary-light); }
+        .work-footer .arrow-icon { transition: var(--transition); }
+        .work-card:hover .work-footer .arrow-icon { transform: translateX(4px); }
+
+        /* Thumb color variations */
+        .thumb-green { background: linear-gradient(135deg, #005D4D, #00806A); }
+        .thumb-teal { background: linear-gradient(135deg, #007A66, #00A88F); }
+        .thumb-sage { background: linear-gradient(135deg, #3D6B5E, #5A917F); }
+        .thumb-dark { background: linear-gradient(135deg, #004539, #005D4D); }
+        .thumb-warm { background: linear-gradient(135deg, #005D4D, #2E7D68); }
+
+        /* ===== CONTACT ===== */
+        .contact-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 48px 40px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-card .contact-icon {
+            width: 64px; height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+        .contact-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        .contact-card p {
+            color: var(--text-light);
+            font-size: 0.92rem;
+            margin-bottom: 24px;
+        }
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .contact-email:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
-            padding: 2rem;
-            background-color: #f4f4f4;
-            color: #777;
+            padding: 32px 24px;
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.82rem;
+            letter-spacing: 0.5px;
         }
 
-        @media (max-width: 600px) {
-            .profile {
-                flex-direction: column;
-                text-align: center;
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(6px); }
+            60% { transform: translateY(3px); }
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav .nav-links { display: none; }
+            .hero { padding: 120px 20px 60px; }
+            .section { padding: 60px 20px; }
+            .about-card { flex-direction: column; text-align: center; padding: 28px; }
+            .about-icon { margin: 0 auto; }
+            .skill-tags { justify-content: center; }
+            .works-grid { grid-template-columns: 1fr; }
+            .contact-card { padding: 32px 24px; }
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
             }
+        }
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>MY PORTFOLIO</h1>
-        <p>Creating tools for a more accessible world.</p>
-    </header>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <div class="logo">PORTFOLIO</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#works">Works</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container">
-        
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="profile">
-                <div>
-                    <p>
-                        現在、アクセシビリティを高めるためのWebサイト制作や、日常を便利にするツールの開発を行っています。
-                        「誰にとっても使いやすいデザイン」を目標に、HTML/CSSやAPIを活用した開発に取り組んでいます。
-                    </p>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Portfolio 2026</div>
+            <h1>MY PORTFOLIO</h1>
+            <p>
+                アクセシビリティを大切に、誰もが使いやすいWebサービスやツールを制作しています。<br>
+                「日常をもっと便利に、もっとやさしく。」
+            </p>
+            <div class="hero-scroll">
+                <a href="#works">
+                    作品を見る <span class="arrow">↓</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="section-label">About</div>
+        <h2 class="section-title">自己紹介</h2>
+        <div class="about-card reveal">
+            <div class="about-icon">🧑‍💻</div>
+            <div class="about-text">
+                <h3>Creating tools for a more accessible world.</h3>
+                <p>
+                    アクセシビリティを高めるためのWebサイト制作や、日常を便利にするツールの開発を行っています。
+                    「誰にとっても使いやすいデザイン」を目標に、HTML/CSS/JavaScriptやAPIを活用した開発に取り組んでいます。
+                </p>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML / CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">API連携</span>
+                    <span class="skill-tag">アクセシビリティ</span>
+                    <span class="skill-tag">UI/UX</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="works">
-            <h2>Works</h2>
-            <div class="portfolio-grid">
-                
-                <a href="https://jonekun429.github.io/my-simulation/" class="card-link" target="_blank">
-                    <div class="card">
-                        <div class="card-img">Simulation System</div>
-                        <div class="card-content">
-                            <span class="tag">Web Tool</span>
-                            <h3 class="card-title">シミュレーション</h3>
-                            <p>独自ロジックを用いたシミュレーションツール。動作確認はこちらから可能です。</p>
+    <!-- Works -->
+    <section class="section" id="works">
+        <div class="section-label">Works</div>
+        <h2 class="section-title">制作実績</h2>
+        <p class="section-desc">これまでに制作したWebサービスやツールの一覧です。各カードをクリックすると実際のサイトをご覧いただけます。</p>
+
+        <div class="works-grid">
+
+            <!-- 1. インデックス投資シミュレーター -->
+            <a href="https://jonekun429.github.io/my-simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
+                <div class="work-card reveal">
+                    <div class="work-thumb thumb-green">
+                        <span class="thumb-icon">📈</span>
+                        <span class="thumb-label">Simulation</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Web Tool</span>
+                        <h3 class="work-title">インデックス投資シミュレーター</h3>
+                        <p class="work-desc">積立投資の将来リターンを独自ロジックでシミュレーションできるツールです。</p>
+                        <div class="work-footer">
+                            サイトを見る <span class="arrow-icon">→</span>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
 
-                <a href="https://jonekun429.github.io/shogaisha-techo/" class="card-link" target="_blank">
-                    <div class="card">
-                        <div class="card-img">HandiMap Kanto</div>
-                        <div class="card-content">
-                            <span class="tag">Web Service</span>
-                            <h3 class="card-title">HandiMap Kanto</h3>
-                            <p>障害者手帳を活用できる施設をまとめた、お出かけ支援マップサイト。</p>
+            <!-- 2. 楽天証券 ポートフォリオシミュレーター -->
+            <a href="https://jonekun429.github.io/rakutensyouken.simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
+                <div class="work-card reveal">
+                    <div class="work-thumb thumb-teal">
+                        <span class="thumb-icon">💹</span>
+                        <span class="thumb-label">Finance</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Web Tool</span>
+                        <h3 class="work-title">楽天証券 ポートフォリオシミュレーター</h3>
+                        <p class="work-desc">楽天証券向けのポートフォリオ構成をシミュレーションできるツールです。</p>
+                        <div class="work-footer">
+                            サイトを見る <span class="arrow-icon">→</span>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
 
-                <a href="https://jonekun429.github.io/rakutensyouken.simulation/" class="card-link" target="_blank">
-                    <div class="card">
-                        <div class="card-img">M&A Simulation</div>
-                        <div class="card-content">
-                            <span class="tag">Simulation</span>
-                            <h3 class="card-title">M&A 売却シミュレーション</h3>
-                            <p>企業の売却額試算などを行うシミュレーションサイト。</p>
+            <!-- 3. ハンディマップ -->
+            <a href="https://jonekun429.github.io/shogaisha-techo/" class="work-link" target="_blank" rel="noopener noreferrer">
+                <div class="work-card reveal">
+                    <div class="work-thumb thumb-sage">
+                        <span class="thumb-icon">🗺️</span>
+                        <span class="thumb-label">Map Service</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Web Service</span>
+                        <h3 class="work-title">HandiMap Kanto</h3>
+                        <p class="work-desc">障害者手帳を活用できる施設をまとめた、お出かけ支援マップサイトです。</p>
+                        <div class="work-footer">
+                            サイトを見る <span class="arrow-icon">→</span>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
 
-            </div>
-        </section>
+            <!-- 4. WEB電卓 -->
+            <a href="https://jonekun429.github.io/webcalculator/" class="work-link" target="_blank" rel="noopener noreferrer">
+                <div class="work-card reveal">
+                    <div class="work-thumb thumb-dark">
+                        <span class="thumb-icon">🧮</span>
+                        <span class="thumb-label">Utility</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Web Tool</span>
+                        <h3 class="work-title">WEB電卓</h3>
+                        <p class="work-desc">ブラウザ上で手軽に使えるシンプルなWeb電卓アプリです。</p>
+                        <div class="work-footer">
+                            サイトを見る <span class="arrow-icon">→</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
 
-        <section id="contact">
-            <h2>Contact</h2>
+            <!-- 5. M&Aシミュレーション -->
+            <a href="https://jonekun429.github.io/M-A.Simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
+                <div class="work-card reveal">
+                    <div class="work-thumb thumb-warm">
+                        <span class="thumb-icon">🏢</span>
+                        <span class="thumb-label">Business</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Simulation</span>
+                        <h3 class="work-title">M&A 売却シミュレーション</h3>
+                        <p class="work-desc">企業の売却額試算などを行うM&A向けシミュレーションサイトです。</p>
+                        <div class="work-footer">
+                            サイトを見る <span class="arrow-icon">→</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">お問い合わせ</h2>
+        <div class="contact-card reveal">
+            <div class="contact-icon">✉️</div>
+            <h3>お気軽にご連絡ください</h3>
             <p>制作のご依頼や、プロジェクトに関するお問い合わせはこちらまで。</p>
-            <p style="text-align: center; font-weight: bold; color: var(--primary-green);">
-                example@mail.com
-            </p>
-        </section>
+            <a href="mailto:example@mail.com" class="contact-email">
+                📧 example@mail.com
+            </a>
+        </div>
+    </section>
 
-    </div>
-
+    <!-- Footer -->
     <footer>
-        &copy; 2026 My Portfolio All Rights Reserved.
+        &copy; 2026 My Portfolio — All Rights Reserved.
     </footer>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
