@@ -119,11 +119,12 @@
             display: block;
             background-color: #FFFFFF;
             border-radius: 50%;
-            padding: 5px;
+            /* padding: 5px;  <-- 枠の内側の隙間をなくしました */
             box-shadow: 0 8px 24px rgba(0,0,0,0.2);
             animation: fadeInDown 0.8s ease both;
-            /* ↓↓↓ 追加した魔法の呪文 ↓↓↓ */
             object-fit: cover;
+            /* ↓↓↓ 画像を1.25倍に拡大して、余白を追い出す ↓↓↓ */
+            transform: scale(1.25); 
         }
 
         .hero-badge {
@@ -236,17 +237,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 5px;
+            /* padding: 5px; <-- 枠の内側の隙間をなくしました */
             border: 2px solid var(--border);
             box-shadow: var(--shadow-sm);
             overflow: hidden; /* はみ出た部分を隠す */
         }
         .about-avatar img {
             width: 100%;
-            height: 100%; /* 高さを100%に */
+            height: 100%;
             border-radius: 50%;
-            /* ↓↓↓ 追加した魔法の呪文 ↓↓↓ */
             object-fit: cover;
+            /* ↓↓↓ 画像を1.25倍に拡大して、余白を追い出す ↓↓↓ */
+            transform: scale(1.25);
         }
 
         .about-text h3 {
