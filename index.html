@@ -110,6 +110,20 @@
             pointer-events: none;
         }
         .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        
+        /* カスタムアイコン画像（ヒーローセクション用） */
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: block;
+            background-color: #FFFFFF; /* 背景の緑に同化しないよう白背景 */
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease both;
+        }
+
         .hero-badge {
             display: inline-block;
             background: rgba(255,255,255,0.12);
@@ -121,7 +135,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 24px;
-            animation: fadeInDown 0.8s ease both;
+            animation: fadeInDown 0.8s 0.1s ease both;
         }
         .hero h1 {
             font-family: 'Sora', sans-serif;
@@ -130,7 +144,7 @@
             letter-spacing: 3px;
             line-height: 1.2;
             margin-bottom: 20px;
-            animation: fadeInDown 0.8s 0.15s ease both;
+            animation: fadeInDown 0.8s 0.2s ease both;
         }
         .hero p {
             font-size: clamp(0.95rem, 2vw, 1.1rem);
@@ -209,16 +223,27 @@
             gap: 32px;
             align-items: center;
         }
-        .about-icon {
+        
+        /* カスタムアイコン画像（Aboutセクション用） */
+        .about-avatar {
             flex-shrink: 0;
-            width: 80px; height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 20px;
+            width: 100px;
+            height: 100px;
+            background: #FFFFFF;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            padding: 5px;
+            border: 2px solid var(--border);
+            box-shadow: var(--shadow-sm);
         }
+        .about-avatar img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
         .about-text h3 {
             font-size: 1.15rem;
             font-weight: 600;
@@ -452,7 +477,7 @@
             .hero { padding: 120px 20px 60px; }
             .section { padding: 60px 20px; }
             .about-card { flex-direction: column; text-align: center; padding: 28px; }
-            .about-icon { margin: 0 auto; }
+            .about-avatar { margin: 0 auto 16px auto; }
             .skill-tags { justify-content: center; }
             .works-grid { grid-template-columns: 1fr; }
             .contact-card { padding: 32px 24px; }
@@ -473,7 +498,6 @@
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
         <div class="nav-inner">
             <div class="logo">PORTFOLIO</div>
@@ -485,9 +509,10 @@
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
+            <img src="icon.png" alt="JONEのアイコン" class="hero-avatar">
+            
             <div class="hero-badge">Portfolio 2026</div>
             <h1>MY PORTFOLIO</h1>
             <p>
@@ -502,12 +527,13 @@
         </div>
     </section>
 
-    <!-- About -->
     <section class="section" id="about">
         <div class="section-label">About</div>
         <h2 class="section-title">自己紹介</h2>
         <div class="about-card reveal">
-            <div class="about-icon">🧑‍💻</div>
+            <div class="about-avatar">
+                <img src="icon.png" alt="JONEのアイコン">
+            </div>
             <div class="about-text">
                 <h3>Creating tools for a more accessible world.</h3>
                 <p>
@@ -525,7 +551,6 @@
         </div>
     </section>
 
-    <!-- Works -->
     <section class="section" id="works">
         <div class="section-label">Works</div>
         <h2 class="section-title">制作実績</h2>
@@ -533,7 +558,6 @@
 
         <div class="works-grid">
 
-            <!-- 1. インデックス投資シミュレーター -->
             <a href="https://jonekun429.github.io/my-simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-green">
@@ -551,7 +575,6 @@
                 </div>
             </a>
 
-            <!-- 2. 楽天証券 ポートフォリオシミュレーター -->
             <a href="https://jonekun429.github.io/rakutensyouken.simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-teal">
@@ -569,7 +592,6 @@
                 </div>
             </a>
 
-            <!-- 3. ハンディマップ -->
             <a href="https://jonekun429.github.io/shogaisha-techo/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-sage">
@@ -587,7 +609,6 @@
                 </div>
             </a>
 
-            <!-- 4. WEB電卓 -->
             <a href="https://jonekun429.github.io/webcalculator/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-dark">
@@ -605,7 +626,6 @@
                 </div>
             </a>
 
-            <!-- 5. M&Aシミュレーション -->
             <a href="https://jonekun429.github.io/M-A.Simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-warm">
@@ -626,7 +646,6 @@
         </div>
     </section>
 
-    <!-- Contact -->
     <section class="section" id="contact">
         <div class="section-label">Contact</div>
         <h2 class="section-title">お問い合わせ</h2>
@@ -640,12 +659,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         &copy; 2026 My Portfolio — All Rights Reserved.
     </footer>
 
-    <!-- Scroll Reveal Script -->
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
