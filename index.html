@@ -119,11 +119,9 @@
             display: block;
             background-color: #FFFFFF;
             border-radius: 50%;
-            /* padding: 5px;  <-- 枠の内側の隙間をなくしました */
             box-shadow: 0 8px 24px rgba(0,0,0,0.2);
             animation: fadeInDown 0.8s ease both;
             object-fit: cover;
-            /* ↓↓↓ 画像を1.25倍に拡大して、余白を追い出す ↓↓↓ */
             transform: scale(1.25); 
         }
 
@@ -237,17 +235,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* padding: 5px; <-- 枠の内側の隙間をなくしました */
             border: 2px solid var(--border);
             box-shadow: var(--shadow-sm);
-            overflow: hidden; /* はみ出た部分を隠す */
+            overflow: hidden;
         }
         .about-avatar img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            /* ↓↓↓ 画像を1.25倍に拡大して、余白を追い出す ↓↓↓ */
             transform: scale(1.25);
         }
 
@@ -318,11 +314,14 @@
             position: relative;
             overflow: hidden;
         }
+        /* ↓↓↓ 絵文字用から画像用にCSSを変更しました ↓↓↓ */
         .work-thumb .thumb-icon {
-            font-size: 2.8rem;
+            width: 80px;
+            height: 80px;
             z-index: 1;
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
             transition: var(--transition);
+            object-fit: contain;
         }
         .work-card:hover .thumb-icon {
             transform: scale(1.1);
@@ -568,7 +567,7 @@
             <a href="https://jonekun429.github.io/my-simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-green">
-                        <span class="thumb-icon">📈</span>
+                        <img src="icon-sim1.png" alt="シミュレーション" class="thumb-icon">
                         <span class="thumb-label">Simulation</span>
                     </div>
                     <div class="work-body">
@@ -585,7 +584,7 @@
             <a href="https://jonekun429.github.io/rakutensyouken.simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-teal">
-                        <span class="thumb-icon">💹</span>
+                        <img src="icon-sim2.png" alt="ファイナンス" class="thumb-icon">
                         <span class="thumb-label">Finance</span>
                     </div>
                     <div class="work-body">
@@ -602,7 +601,7 @@
             <a href="https://jonekun429.github.io/shogaisha-techo/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-sage">
-                        <span class="thumb-icon">🗺️</span>
+                        <img src="icon-map.png" alt="マップ" class="thumb-icon">
                         <span class="thumb-label">Map Service</span>
                     </div>
                     <div class="work-body">
@@ -619,7 +618,7 @@
             <a href="https://jonekun429.github.io/webcalculator/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-dark">
-                        <span class="thumb-icon">🧮</span>
+                        <img src="icon-calc.png" alt="ユーティリティ" class="thumb-icon">
                         <span class="thumb-label">Utility</span>
                     </div>
                     <div class="work-body">
@@ -636,7 +635,7 @@
             <a href="https://jonekun429.github.io/M-A.Simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
                 <div class="work-card reveal">
                     <div class="work-thumb thumb-warm">
-                        <span class="thumb-icon">🏢</span>
+                        <img src="icon-ma.png" alt="ビジネス" class="thumb-icon">
                         <span class="thumb-label">Business</span>
                     </div>
                     <div class="work-body">
