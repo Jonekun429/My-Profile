@@ -9,9 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #005D4D;
-            --primary-dark: #004539;
-            --primary-light: #007A66;
+            /* 添付画像の緑をベースにしたカラーパレットに修正 */
+            --primary: #145E47;
+            --primary-dark: #0E4232;
+            --primary-light: #1A7A5D;
             --accent: #E8A838;
             --accent-light: #FFF3DC;
             --surface: #F7FAF8;
@@ -22,9 +23,10 @@
             --border: #D4E2DD;
             --radius: 16px;
             --radius-sm: 10px;
-            --shadow-sm: 0 2px 8px rgba(0,93,77,0.06);
-            --shadow-md: 0 8px 30px rgba(0,93,77,0.10);
-            --shadow-lg: 0 16px 50px rgba(0,93,77,0.14);
+            /* 影の色も新しいprimary(20, 94, 71)に合わせて修正 */
+            --shadow-sm: 0 2px 8px rgba(20,94,71,0.06);
+            --shadow-md: 0 8px 30px rgba(20,94,71,0.10);
+            --shadow-lg: 0 16px 50px rgba(20,94,71,0.14);
             --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -79,7 +81,7 @@
         }
         nav .nav-links a:hover, nav .nav-links a:focus {
             color: var(--primary);
-            background: rgba(0,93,77,0.06);
+            background: rgba(20,94,71,0.06); /* primaryに合わせたホバー色 */
         }
 
         /* ===== HERO ===== */
@@ -88,7 +90,8 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(170deg, var(--primary) 0%, var(--primary-dark) 55%, #003D32 100%);
+            /* ヒーローのグラデーションも同系色で調整 */
+            background: linear-gradient(170deg, var(--primary) 0%, var(--primary-dark) 55%, #0A3024 100%);
             color: white;
         }
         .hero::before {
@@ -386,12 +389,12 @@
         .work-footer .arrow-icon { transition: var(--transition); }
         .work-card:hover .work-footer .arrow-icon { transform: translateX(4px); }
 
-        /* Thumb color variations */
-        .thumb-green { background: linear-gradient(135deg, #005D4D, #00806A); }
-        .thumb-teal { background: linear-gradient(135deg, #007A66, #00A88F); }
-        .thumb-sage { background: linear-gradient(135deg, #3D6B5E, #5A917F); }
-        .thumb-dark { background: linear-gradient(135deg, #004539, #005D4D); }
-        .thumb-warm { background: linear-gradient(135deg, #005D4D, #2E7D68); }
+        /* サムネイルの背景色も新しい緑ベースに調整 */
+        .thumb-green { background: linear-gradient(135deg, #145E47, #1A7A5D); }
+        .thumb-teal { background: linear-gradient(135deg, #1A7A5D, #22A17A); }
+        .thumb-sage { background: linear-gradient(135deg, #426B5E, #629181); }
+        .thumb-dark { background: linear-gradient(135deg, #0E4232, #145E47); }
+        .thumb-warm { background: linear-gradient(135deg, #145E47, #327A62); }
 
         /* ===== CONTACT ===== */
         .contact-card {
