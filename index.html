@@ -155,7 +155,7 @@
         }
         .about-avatar img {
             width: 100%; height: 100%; border-radius: 50%;
-            object-fit: cover; transform: scale(1.25);
+            object-fit: cover;
         }
         .about-text h3 { font-size: 1.15rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px; }
         .about-text p { color: var(--text-light); font-size: 0.95rem; line-height: 1.9; }
@@ -166,6 +166,24 @@
             border-radius: 50px; font-size: 0.8rem; font-weight: 500;
         }
 
+        /* ===== CATEGORY FILTER ===== */
+        .category-filters {
+            display: flex; flex-wrap: wrap; gap: 12px;
+            margin-bottom: 48px;
+        }
+        .category-btn {
+            background: white; border: 2px solid var(--border);
+            color: var(--text); padding: 8px 20px;
+            border-radius: 50px; font-size: 0.9rem; font-weight: 600;
+            cursor: pointer; transition: var(--transition);
+        }
+        .category-btn:hover {
+            border-color: var(--primary); color: var(--primary);
+        }
+        .category-btn.active {
+            background: var(--primary); color: white; border-color: var(--primary);
+        }
+
         /* ===== WORKS GRID ===== */
         .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
         .work-link {
@@ -173,6 +191,9 @@
             outline-offset: 4px; border-radius: var(--radius);
         }
         .work-link:focus-visible { outline: 3px solid var(--accent); }
+        .work-link.hidden {
+            display: none;
+        }
         .work-card {
             background: white; border-radius: var(--radius); overflow: hidden;
             border: 1px solid var(--border); box-shadow: var(--shadow-sm);
@@ -189,11 +210,12 @@
             background: #005D4D;
         }
         .work-thumb .thumb-icon {
-            width: 120px; height: 120px; z-index: 1;
+            width: 140px; height: 140px; z-index: 1;
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
-            transition: var(--transition); object-fit: contain;
+            transition: var(--transition);
+            display: block;
         }
-        .work-card:hover .thumb-icon { transform: scale(1.1); }
+        .work-card:hover .thumb-icon { transform: scale(1.08); }
         .work-thumb .thumb-label {
             position: absolute; bottom: 12px; right: 14px;
             font-family: 'Sora', sans-serif; font-size: 0.7rem; font-weight: 600;
@@ -240,7 +262,111 @@
         }
         .contact-email:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* ===== FOOTER ===== */
+        /* ===== MODAL ===== */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1000; pointer-events: none;
+        }
+        .modal.active {
+            display: block; pointer-events: auto;
+        }
+        .modal-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px);
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-content {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: white; border-radius: var(--radius); box-shadow: var(--shadow-lg);
+            max-width: 650px; width: 90%; max-height: 85vh; overflow-y: auto;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 32px 32px 20px; border-bottom: 1px solid var(--border);
+        }
+        .modal-header h2 {
+            font-size: 1.4rem; font-weight: 700; color: var(--primary-dark);
+            margin: 0;
+        }
+        .modal-close {
+            background: none; border: none; font-size: 2rem; color: var(--text-muted);
+            cursor: pointer; padding: 0; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .modal-close:hover { color: var(--text); }
+        .modal-body {
+            padding: 32px;
+        }
+        .modal-description h3 {
+            font-size: 1.1rem; font-weight: 600; color: var(--primary-dark);
+            margin-bottom: 16px; margin-top: 0;
+        }
+        .info-list {
+            list-style: none; padding: 0;
+            background: var(--surface); border-radius: var(--radius-sm);
+            padding: 16px 20px;
+        }
+        .info-list li {
+            font-size: 0.9rem; color: var(--text-light); line-height: 1.8;
+            margin-bottom: 8px;
+        }
+        .info-list li:last-child {
+            margin-bottom: 0;
+        }
+        .example-section {
+            margin-top: 24px;
+        }
+        .example-section h4 {
+            font-size: 0.95rem; font-weight: 600; color: var(--primary-dark);
+            margin-bottom: 12px; margin-top: 0;
+        }
+        .example-box {
+            background: #FFF9F0; border-left: 4px solid var(--accent);
+            padding: 16px 20px; border-radius: var(--radius-sm); overflow-x: auto;
+        }
+        .example-box p {
+            font-size: 0.85rem; color: var(--text); line-height: 1.7;
+            margin-bottom: 10px; white-space: pre-wrap; word-wrap: break-word;
+        }
+        .example-box p:last-child {
+            margin-bottom: 0;
+        }
+        .mailer-options {
+            margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border);
+        }
+        .mailer-options h3 {
+            font-size: 1.1rem; font-weight: 600; color: var(--primary-dark);
+            margin-bottom: 16px; margin-top: 0;
+        }
+        .mailer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+        }
+        .mailer-btn {
+            background: white; border: 2px solid var(--border); border-radius: var(--radius-sm);
+            padding: 20px 16px; cursor: pointer; transition: var(--transition);
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
+            font-size: 0.9rem; font-weight: 600; color: var(--text);
+        }
+        .mailer-btn:hover {
+            border-color: var(--primary); background: rgba(0, 93, 77, 0.04);
+            transform: translateY(-2px);
+        }
+        .mailer-btn.active {
+            background: var(--primary); color: white; border-color: var(--primary);
+        }
+        .mailer-icon {
+            font-size: 1.8rem;
+        }
+        .mailer-name {
+            font-size: 0.8rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translate(-50%, -40%); } to { opacity: 1; transform: translate(-50%, -50%); } }
         footer {
             text-align: center; padding: 32px 24px;
             background: var(--primary-dark); color: rgba(255,255,255,0.5);
@@ -263,6 +389,12 @@
             .skill-tags { justify-content: center; }
             .works-grid { grid-template-columns: 1fr; }
             .contact-card { padding: 32px 24px; }
+            .category-filters { justify-content: center; }
+            .modal-content { width: 95%; max-height: 90vh; max-width: 550px; }
+            .modal-header { padding: 24px 20px 16px; }
+            .modal-body { padding: 20px; }
+            .mailer-grid { grid-template-columns: repeat(2, 1fr); }
+            .example-box { font-size: 0.8rem; padding: 12px 16px; }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -306,10 +438,11 @@
                 <img src="Gemini_Generated_Image_stk3gjstk3gjstk3.png" alt="JONEのアイコン">
             </div>
             <div class="about-text">
-                <h3>Creating tools for a more accessible world.</h3>
+                <h3>Turning ideas into solutions with care.</h3>
                 <p>
-                    アクセシビリティを高めるためのWebサイト制作や、日常を便利にするツールの開発を行っています。
-                    「誰にとっても使いやすいデザイン」を目標に、HTML/CSS/JavaScriptやAPIを活用した開発に取り組んでいます。
+                    「あったらいいな」というお声やアイデアを大切に、それを形にしていくことをモットーにものづくりをしています。<br>
+                    使う人のことを思いながら、優しく、丁寧で、誰もが快適に使えるWebサイトやツールを制作しています。<br>
+                    小さな不便さを大きな喜びに変えることを目指して、HTML/CSS/JavaScriptやAPIを活用した開発に取り組んでいます。
                 </p>
                 <div class="skill-tags">
                     <span class="skill-tag">HTML / CSS</span>
@@ -327,27 +460,32 @@
         <h2 class="section-title">制作実績</h2>
         <p class="section-desc">これまでに制作したWebサービスやツールの一覧です。各カードをクリックすると実際のサイトをご覧いただけます。</p>
 
+        <!-- ===== CATEGORY FILTERS ===== -->
+        <div class="category-filters">
+            <button class="category-btn active" data-category="all">すべて</button>
+            <button class="category-btn" data-category="finance">金融・投資</button>
+            <button class="category-btn" data-category="lifestyle">ライフスタイル</button>
+            <button class="category-btn" data-category="utility">ツール・ユーティリティ</button>
+            <button class="category-btn" data-category="entertainment">エンタメ</button>
+            <button class="category-btn" data-category="service">その他サービス</button>
+        </div>
+
         <div class="works-grid">
 
-            <a href="https://jonekun429.github.io/Subscription/" class="work-link" target="_blank" rel="noopener noreferrer">
+            <!-- ===== FINANCE ===== -->
+            <a href="https://jonekun429.github.io/my-simulation/" class="work-link" data-category="finance">
                 <div class="work-card reveal">
                     <div class="work-thumb">
-                        <img src="アイコン一覧/icon-subscription.png" alt="サブスク管理" class="thumb-icon">
-                        <span class="thumb-label">Management</span>
-                    </div>
-                    <div class="work-body">
-                        <span class="work-tag">Web App</span>
-                        <h3 class="work-title">サブスク管理ダッシュボード</h3>
-                        <p class="work-desc">登録したサブスクリプションの月額・年額を可視化し、一元管理できるWebアプリです。</p>
-                        <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://jonekun429.github.io/my-simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
-                <div class="work-card reveal">
-                    <div class="work-thumb">
-                        <img src="アイコン一覧/icon-simulation.png.png" alt="シミュレーション" class="thumb-icon">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(20, 80)">
+                                <rect x="0" y="30" width="12" height="20" fill="#E8A838"/>
+                                <rect x="18" y="15" width="12" height="35" fill="#E8A838"/>
+                                <rect x="36" y="5" width="12" height="45" fill="#E8A838"/>
+                                <rect x="54" y="20" width="12" height="30" fill="#E8A838"/>
+                                <polyline points="6,30 24,15 42,5 60,20 78,10" stroke="white" stroke-width="2" fill="none"/>
+                            </g>
+                        </svg>
                         <span class="thumb-label">Simulation</span>
                     </div>
                     <div class="work-body">
@@ -359,10 +497,18 @@
                 </div>
             </a>
 
-            <a href="https://jonekun429.github.io/rakutensyouken.simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://jonekun429.github.io/rakutensyouken.simulation/" class="work-link" data-category="finance">
                 <div class="work-card reveal">
                     <div class="work-thumb">
-                        <img src="アイコン一覧/icon-finance.png" alt="ファイナンス" class="thumb-icon">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(35, 35)">
+                                <circle cx="20" cy="20" r="18" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M 20 5 A 15 15 0 0 1 35 20" fill="#E8A838"/>
+                                <path d="M 35 20 A 15 15 0 0 1 20 35" fill="#FFF3DC" opacity="0.7"/>
+                                <circle cx="20" cy="20" r="3" fill="white"/>
+                            </g>
+                        </svg>
                         <span class="thumb-label">Finance</span>
                     </div>
                     <div class="work-body">
@@ -374,40 +520,21 @@
                 </div>
             </a>
 
-            <a href="https://jonekun429.github.io/shogaisha-techo/" class="work-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://jonekun429.github.io/M-A.Simulation/" class="work-link" data-category="finance">
                 <div class="work-card reveal">
                     <div class="work-thumb">
-                        <img src="アイコン一覧/icon-map.png" alt="マップ" class="thumb-icon">
-                        <span class="thumb-label">Map Service</span>
-                    </div>
-                    <div class="work-body">
-                        <span class="work-tag">Web Service</span>
-                        <h3 class="work-title">HandiMap Kanto</h3>
-                        <p class="work-desc">障害者手帳を活用できる施設をまとめた、お出かけ支援マップサイトです。</p>
-                        <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://jonekun429.github.io/webcalculator/" class="work-link" target="_blank" rel="noopener noreferrer">
-                <div class="work-card reveal">
-                    <div class="work-thumb">
-                        <img src="アイコン一覧/icon-calc.png" alt="ユーティリティ" class="thumb-icon">
-                        <span class="thumb-label">Utility</span>
-                    </div>
-                    <div class="work-body">
-                        <span class="work-tag">Web Tool</span>
-                        <h3 class="work-title">WEB電卓</h3>
-                        <p class="work-desc">ブラウザ上で手軽に使えるシンプルなWeb電卓アプリです。</p>
-                        <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://jonekun429.github.io/M-A.Simulation/" class="work-link" target="_blank" rel="noopener noreferrer">
-                <div class="work-card reveal">
-                    <div class="work-thumb">
-                        <img src="アイコン一覧/icon-business.png" alt="ビジネス" class="thumb-icon">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(25, 40)">
+                                <path d="M 10 20 Q 8 15 12 12 Q 14 10 16 12 L 18 18" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                <path d="M 80 20 Q 82 15 78 12 Q 76 10 74 12 L 72 18" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                <path d="M 20 25 L 70 25 Q 75 25 75 30 L 75 35 Q 75 38 70 38 L 20 38 Q 15 38 15 35 L 15 30 Q 15 25 20 25" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <rect x="18" y="28" width="8" height="8" fill="#E8A838" rx="1"/>
+                                <rect x="64" y="28" width="8" height="8" fill="#E8A838" rx="1"/>
+                                <path d="M 35 40 Q 35 45 38 48" stroke="#E8A838" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                <path d="M 55 40 Q 55 45 52 48" stroke="#E8A838" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            </g>
+                        </svg>
                         <span class="thumb-label">Business</span>
                     </div>
                     <div class="work-body">
@@ -419,11 +546,43 @@
                 </div>
             </a>
 
-            <!-- ===== 追加: Health Dashboard ===== -->
-            <a href="https://jonekun429.github.io/health-dashboard/" class="work-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://jonekun429.github.io/dashboard_moneyforward/" class="work-link" data-category="lifestyle">
                 <div class="work-card reveal">
                     <div class="work-thumb">
-                        <img src="アイコン一覧/icon-health.png" alt="ヘルスケア" class="thumb-icon">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(25, 35)">
+                                <rect x="0" y="0" width="80" height="60" fill="none" stroke="white" stroke-width="2" rx="3"/>
+                                <rect x="5" y="8" width="20" height="35" fill="#E8A838"/>
+                                <rect x="30" y="15" width="20" height="28" fill="#FFF3DC"/>
+                                <rect x="55" y="5" width="20" height="38" fill="#E8A838" opacity="0.7"/>
+                                <line x1="0" y1="48" x2="80" y2="48" stroke="white" stroke-width="1"/>
+                                <text x="5" y="58" font-size="8" fill="white">2024</text>
+                            </g>
+                        </svg>
+                        <span class="thumb-label">Finance</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Dashboard</span>
+                        <h3 class="work-title">MoneyForward Dashboard</h3>
+                        <p class="work-desc">家計の収支データを分析・可視化し、資産管理を効率化するダッシュボードです。</p>
+                        <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- ===== LIFESTYLE ===== -->
+            <a href="https://jonekun429.github.io/health-dashboard/" class="work-link" data-category="lifestyle">
+                <div class="work-card reveal">
+                    <div class="work-thumb">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(45, 35)">
+                                <path d="M 25 10 Q 25 5 20 5 Q 15 5 15 10 Q 15 18 25 28 Q 35 18 35 10 Q 35 5 30 5 Q 25 5 25 10 Z" fill="#E8A838"/>
+                                <circle cx="25" cy="45" r="15" fill="none" stroke="white" stroke-width="2"/>
+                                <polyline points="25,38 25,45 20,40" stroke="white" stroke-width="2" fill="none"/>
+                            </g>
+                        </svg>
                         <span class="thumb-label">Healthcare</span>
                     </div>
                     <div class="work-body">
@@ -435,17 +594,120 @@
                 </div>
             </a>
 
-            <!-- ===== 追加: MoneyForward Dashboard ===== -->
-            <a href="https://jonekun429.github.io/dashboard_moneyforward/" class="work-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://jonekun429.github.io/Subscription/" class="work-link" data-category="lifestyle">
                 <div class="work-card reveal">
                     <div class="work-thumb">
-                        <img src="アイコン一覧/icon-moneyforward.png" alt="家計管理" class="thumb-icon">
-                        <span class="thumb-label">Finance</span>
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(30, 35)">
+                                <rect x="5" y="5" width="35" height="50" fill="none" stroke="white" stroke-width="2" rx="2"/>
+                                <rect x="50" y="5" width="35" height="50" fill="none" stroke="white" stroke-width="2" rx="2"/>
+                                <line x1="10" y1="20" x2="35" y2="20" stroke="#E8A838" stroke-width="2"/>
+                                <line x1="55" y1="20" x2="80" y2="20" stroke="#E8A838" stroke-width="2"/>
+                                <circle cx="17.5" cy="35" r="2" fill="white"/>
+                                <circle cx="27.5" cy="35" r="2" fill="white"/>
+                                <circle cx="62.5" cy="35" r="2" fill="white"/>
+                                <circle cx="72.5" cy="35" r="2" fill="white"/>
+                            </g>
+                        </svg>
+                        <span class="thumb-label">Management</span>
                     </div>
                     <div class="work-body">
-                        <span class="work-tag">Dashboard</span>
-                        <h3 class="work-title">MoneyForward Dashboard</h3>
-                        <p class="work-desc">家計の収支データを分析・可視化し、資産管理を効率化するダッシュボードです。</p>
+                        <span class="work-tag">Web App</span>
+                        <h3 class="work-title">サブスク管理ダッシュボード</h3>
+                        <p class="work-desc">登録したサブスクリプションの月額・年額を可視化し、一元管理できるWebアプリです。</p>
+                        <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- ===== UTILITY ===== -->
+            <a href="https://jonekun429.github.io/webcalculator/" class="work-link" data-category="utility">
+                <div class="work-card reveal">
+                    <div class="work-thumb">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(25, 25)">
+                                <rect x="0" y="0" width="70" height="90" fill="none" stroke="white" stroke-width="2" rx="3"/>
+                                <rect x="5" y="8" width="60" height="20" fill="white" opacity="0.2"/>
+                                <text x="35" y="22" font-size="10" fill="white" text-anchor="middle" font-weight="bold">0</text>
+                                <rect x="5" y="32" width="13" height="10" fill="#E8A838" rx="1"/>
+                                <rect x="21" y="32" width="13" height="10" fill="#E8A838" rx="1"/>
+                                <rect x="37" y="32" width="13" height="10" fill="#E8A838" rx="1"/>
+                                <rect x="53" y="32" width="12" height="10" fill="white" opacity="0.3" rx="1"/>
+                                <rect x="5" y="45" width="13" height="10" fill="white" opacity="0.3" rx="1"/>
+                                <rect x="21" y="45" width="13" height="10" fill="white" opacity="0.3" rx="1"/>
+                                <rect x="37" y="45" width="13" height="10" fill="white" opacity="0.3" rx="1"/>
+                                <rect x="53" y="45" width="12" height="10" fill="#E8A838" rx="1"/>
+                                <rect x="5" y="58" width="60" height="10" fill="#E8A838" rx="1"/>
+                                <text x="35" y="65" font-size="8" fill="white" text-anchor="middle">=</text>
+                            </g>
+                        </svg>
+                        <span class="thumb-label">Utility</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Web Tool</span>
+                        <h3 class="work-title">WEB電卓</h3>
+                        <p class="work-desc">ブラウザ上で手軽に使えるシンプルなWeb電卓アプリです。</p>
+                        <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- ===== SERVICE ===== -->
+            <a href="https://jonekun429.github.io/shogaisha-techo/" class="work-link" data-category="service">
+                <div class="work-card reveal">
+                    <div class="work-thumb">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(35, 30)">
+                                <circle cx="25" cy="25" r="22" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M 25 5 L 32 22 L 20 22 Z" fill="#E8A838"/>
+                                <circle cx="18" cy="30" r="3" fill="white"/>
+                                <circle cx="32" cy="30" r="3" fill="white"/>
+                                <circle cx="25" cy="40" r="3" fill="white"/>
+                                <g opacity="0.5">
+                                    <circle cx="10" cy="15" r="2" fill="white"/>
+                                    <circle cx="40" cy="20" r="2" fill="white"/>
+                                    <circle cx="35" cy="40" r="2" fill="white"/>
+                                </g>
+                            </g>
+                        </svg>
+                        <span class="thumb-label">Map Service</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Web Service</span>
+                        <h3 class="work-title">HandiMap Kanto</h3>
+                        <p class="work-desc">障害者手帳を活用できる施設をまとめた、お出かけ支援マップサイトです。</p>
+                        <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- ===== ENTERTAINMENT ===== -->
+            <a href="https://jonekun429.github.io/my-pet/" class="work-link" data-category="entertainment" target="_blank" rel="noopener noreferrer">
+                <div class="work-card reveal">
+                    <div class="work-thumb">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <g transform="translate(30, 30)">
+                                <circle cx="40" cy="35" r="20" fill="white" opacity="0.9"/>
+                                <circle cx="35" cy="30" r="3" fill="#005D4D"/>
+                                <circle cx="45" cy="30" r="3" fill="#005D4D"/>
+                                <path d="M 38 38 Q 40 40 42 38" stroke="#E8A838" stroke-width="2" fill="none"/>
+                                <circle cx="25" cy="25" r="4" fill="#E8A838" opacity="0.7"/>
+                                <circle cx="55" cy="25" r="4" fill="#E8A838" opacity="0.7"/>
+                                <circle cx="20" cy="40" r="3" fill="white" opacity="0.8"/>
+                                <circle cx="60" cy="40" r="3" fill="white" opacity="0.8"/>
+                                <path d="M 38 50 L 42 50 Q 40 55 40 55" stroke="white" stroke-width="1.5" fill="none"/>
+                            </g>
+                        </svg>
+                        <span class="thumb-label">Game</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Interactive</span>
+                        <h3 class="work-title">My Pet</h3>
+                        <p class="work-desc">ブラウザで楽しめる、かわいいペットシミュレーターアプリです。日々のお世話を通じてペットとの関係を築きます。</p>
                         <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
                     </div>
                 </div>
@@ -461,13 +723,158 @@
             <div class="contact-icon">✉️</div>
             <h3>お気軽にご連絡ください</h3>
             <p>制作のご依頼や、プロジェクトに関するお問い合わせはこちらまで。</p>
-            <a href="mailto:example@mail.com" class="contact-email">📧 example@mail.com</a>
+            <button id="contact-btn" class="contact-email">📧 xke.akaha0429@gmail.com</button>
         </div>
     </section>
 
     <footer>&copy; 2026 My Portfolio — All Rights Reserved.</footer>
 
+    <!-- ===== MAILER SELECTION MODAL ===== -->
+    <div id="mailer-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>メーラーを選択</h2>
+                <button class="modal-close" aria-label="閉じる">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-description">
+                    <h3>📝 お問い合わせの際は、以下の情報をお知らせください：</h3>
+                    <ul class="info-list">
+                        <li><strong>氏名：</strong>お名前またはご担当者名</li>
+                        <li><strong>依頼内容：</strong>具体的な制作内容やご相談内容</li>
+                        <li><strong>目的：</strong>サイトやツール制作の目的・背景</li>
+                        <li><strong>ご予算：</strong>予定されているご予算の目安</li>
+                        <li><strong>納期：</strong>制作予定の納期目安</li>
+                    </ul>
+                    
+                    <div class="example-section">
+                        <h4>📌 記入例：</h4>
+                        <div class="example-box">
+                            <p><strong>氏名：</strong>田中太郎</p>
+                            <p><strong>依頼内容：</strong>社内用の売上管理ダッシュボードを制作してほしいです。Excel から CSV データを取り込んで、月別の売上推移や部門別の成績を可視化できるツールを想定しています。</p>
+                            <p><strong>目的：</strong>営業チーム全体で営業成績を共有し、目標達成状況をリアルタイムで把握したいです。</p>
+                            <p><strong>ご予算：</strong>10〜20万円程度を予定しています。</p>
+                            <p><strong>納期：</strong>2024年4月中旬までにお願いしたいです。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mailer-options">
+                    <h3>🔗 メーラーを選択：</h3>
+                    <div class="mailer-grid">
+                        <button class="mailer-btn" data-mailer="gmail">
+                            <div class="mailer-icon">📧</div>
+                            <div class="mailer-name">Gmail</div>
+                        </button>
+                        <button class="mailer-btn" data-mailer="outlook">
+                            <div class="mailer-icon">📨</div>
+                            <div class="mailer-name">Outlook</div>
+                        </button>
+                        <button class="mailer-btn" data-mailer="icloud">
+                            <div class="mailer-icon">☁️</div>
+                            <div class="mailer-name">iCloud Mail</div>
+                        </button>
+                        <button class="mailer-btn" data-mailer="default">
+                            <div class="mailer-icon">✉️</div>
+                            <div class="mailer-name">デフォルト</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        const emailAddress = 'xke.akaha0429@gmail.com';
+        const emailSubject = encodeURIComponent('【お問い合わせ】ご相談があります');
+        const emailBody = encodeURIComponent(
+            `お世話になっています。\n\n` +
+            `制作のご相談でお問い合わせさせていただきました。\n\n` +
+            `【氏名】\n\n\n` +
+            `【依頼内容】\n\n\n` +
+            `【目的】\n\n\n` +
+            `【ご予算】\n\n\n` +
+            `【納期】\n\n\n` +
+            `よろしくお願いいたします。`
+        );
+
+        // ===== MODAL CONTROL =====
+        const modal = document.getElementById('mailer-modal');
+        const contactBtn = document.getElementById('contact-btn');
+        const modalClose = document.querySelector('.modal-close');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const mailerBtns = document.querySelectorAll('.mailer-btn');
+
+        // モーダル開く
+        contactBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        // モーダル閉じる
+        const closeModal = () => {
+            modal.classList.remove('active');
+        };
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+
+        // メーラー選択
+        mailerBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const mailer = btn.dataset.mailer;
+                
+                switch(mailer) {
+                    case 'gmail':
+                        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${emailSubject}&body=${emailBody}`);
+                        break;
+                    case 'outlook':
+                        window.open(`https://outlook.live.com/?mail=1&MailForm=compose&To=${emailAddress}&Subject=${emailSubject}`);
+                        break;
+                    case 'icloud':
+                        window.open(`https://www.icloud.com/mail`);
+                        break;
+                    case 'default':
+                        window.location.href = `mailto:${emailAddress}?subject=${emailSubject}&body=${emailBody}`;
+                        break;
+                }
+                
+                closeModal();
+            });
+        });
+
+        // ESC キーで閉じる
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // ===== CATEGORY FILTER ===== 
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const workLinks = document.querySelectorAll('.work-link');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const selectedCategory = btn.dataset.category;
+
+                // Filter works
+                workLinks.forEach(link => {
+                    const workCategory = link.dataset.category;
+                    if (selectedCategory === 'all' || workCategory === selectedCategory) {
+                        link.classList.remove('hidden');
+                    } else {
+                        link.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // ===== INTERSECTION OBSERVER ===== 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
