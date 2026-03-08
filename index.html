@@ -546,6 +546,41 @@
                 </div>
             </a>
 
+            <!-- ===== 確定申告シミュレーター（新規追加） ===== -->
+            <a href="https://jonekun429.github.io/tax/" class="work-link" data-category="finance" target="_blank" rel="noopener noreferrer">
+                <div class="work-card reveal">
+                    <div class="work-thumb">
+                        <svg class="thumb-icon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="140" height="140" rx="12" fill="#007A66"/>
+                            <!-- 書類 -->
+                            <rect x="33" y="22" width="58" height="72" rx="5" fill="none" stroke="white" stroke-width="2"/>
+                            <!-- 折れ角 -->
+                            <polyline points="71,22 71,42 91,42" stroke="white" stroke-width="2" fill="none"/>
+                            <polygon points="71,22 91,42 71,42" fill="white" opacity="0.12"/>
+                            <!-- 円グラフ -->
+                            <circle cx="58" cy="68" r="16" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <!-- 手取り: 約50% -->
+                            <path d="M58,52 A16,16 0 0,1 74,68" stroke="#E8A838" stroke-width="5" fill="none" stroke-linecap="round"/>
+                            <!-- 税金: 約30% -->
+                            <path d="M74,68 A16,16 0 0,1 58,84" stroke="white" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
+                            <!-- 経費: 約20% -->
+                            <path d="M58,84 A16,16 0 0,1 42,68" stroke="#FFF3DC" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
+                            <!-- 中心点 -->
+                            <circle cx="58" cy="68" r="3" fill="white"/>
+                            <!-- ¥マーク -->
+                            <text x="87" y="73" font-size="14" fill="#E8A838" font-weight="bold" text-anchor="middle" font-family="serif">¥</text>
+                        </svg>
+                        <span class="thumb-label">Tax</span>
+                    </div>
+                    <div class="work-body">
+                        <span class="work-tag">Simulation</span>
+                        <h3 class="work-title">確定申告シミュレーター</h3>
+                        <p class="work-desc">過去の確定申告を振り返り、収入・経費・社会保険料を入力して所得税・住民税・手取り額をリアルタイムにシミュレーションできるツールです。</p>
+                        <div class="work-footer">サイトを見る <span class="arrow-icon">→</span></div>
+                    </div>
+                </div>
+            </a>
+
             <a href="https://jonekun429.github.io/dashboard_moneyforward/" class="work-link" data-category="lifestyle">
                 <div class="work-card reveal">
                     <div class="work-thumb">
@@ -807,23 +842,19 @@
         const modalOverlay = document.querySelector('.modal-overlay');
         const mailerBtns = document.querySelectorAll('.mailer-btn');
 
-        // モーダル開く
         contactBtn.addEventListener('click', () => {
             modal.classList.add('active');
         });
 
-        // モーダル閉じる
         const closeModal = () => {
             modal.classList.remove('active');
         };
         modalClose.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', closeModal);
 
-        // メーラー選択
         mailerBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const mailer = btn.dataset.mailer;
-                
                 switch(mailer) {
                     case 'gmail':
                         window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${emailSubject}&body=${emailBody}`);
@@ -838,12 +869,10 @@
                         window.location.href = `mailto:${emailAddress}?subject=${emailSubject}&body=${emailBody}`;
                         break;
                 }
-                
                 closeModal();
             });
         });
 
-        // ESC キーで閉じる
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
@@ -856,13 +885,11 @@
 
         categoryBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Update active button
                 categoryBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
                 const selectedCategory = btn.dataset.category;
 
-                // Filter works
                 workLinks.forEach(link => {
                     const workCategory = link.dataset.category;
                     if (selectedCategory === 'all' || workCategory === selectedCategory) {
